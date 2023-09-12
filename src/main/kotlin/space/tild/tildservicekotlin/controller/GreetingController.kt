@@ -8,7 +8,5 @@ import org.springframework.web.bind.annotation.*
 class GreetingController {
 
     @PostMapping("/hello")
-    fun hello(@RequestBody name: String) : ResponseEntity<String> {
-        return ResponseEntity("Hello ${name}!", HttpStatus.I_AM_A_TEAPOT);
-    }
+    fun hello(@RequestBody name: String) = ResponseEntity<String>("Hello $name", HttpStatus.I_AM_A_TEAPOT);
 }
