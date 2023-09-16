@@ -1,4 +1,8 @@
 package space.tild.tildservicekotlin.models
 
-class UserModels {
-}
+data class UserDto(
+    val firstName : String,
+    val username : String,
+    val email : String,
+    val password : String,
+)
