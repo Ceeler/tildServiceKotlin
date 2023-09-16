@@ -1,4 +1,6 @@
 package space.tild.tildservicekotlin.repository
 
-interface TaskRepository {
-}
+import org.springframework.data.repository.CrudRepository
+import space.tild.tildservicekotlin.database.Task
+
+interface TaskRepository : CrudRepository<Task, Long>

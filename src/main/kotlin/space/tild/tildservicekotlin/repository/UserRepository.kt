@@ -1,10 +1,6 @@
-package space.tild.tildservicekotlin.database
+package space.tild.tildservicekotlin.repository
 
 import org.springframework.data.repository.CrudRepository
-
-//import org.springframework.data.repository.CrudRepository
-//import org.springframework.data.repository.reactive.ReactiveCrudRepository
-//
-//interface UserRepository : ReactiveCrudRepository<User, Long>
+import space.tild.tildservicekotlin.database.User
 
 interface UserRepository : CrudRepository<User, Long>

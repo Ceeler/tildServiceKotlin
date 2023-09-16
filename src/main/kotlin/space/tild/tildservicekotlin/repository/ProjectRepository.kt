@@ -1,4 +1,6 @@
 package space.tild.tildservicekotlin.repository
 
-interface ProjectRepository {
-}
+import org.springframework.data.repository.CrudRepository
+import space.tild.tildservicekotlin.database.Project
+
+interface ProjectRepository : CrudRepository<Project, Long>
