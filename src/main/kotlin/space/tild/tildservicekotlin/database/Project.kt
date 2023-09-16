@@ -14,7 +14,7 @@ data class Project(
     var id : Long? = null,
     var projectName : String = "Blank",
     var projectDescription : String? = null,
-    var endedAt : Date? = Date.from(Instant.now().plusSeconds(60*60*24)),
+    var endedAt : Date? = Date.from(Instant.now().plusSeconds(60*60*24*30)),
     @ManyToMany(mappedBy = "projects")
     var users : Set<User?> = setOf(null),
     @CreationTimestamp var createdAt : Instant? = null,
