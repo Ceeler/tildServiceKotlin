@@ -1,5 +1,8 @@
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+
 CREATE TABLE IF NOT EXISTS users(
-    id BIGSERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY ,
     first_name CHARACTER VARYING(64) NOT NULL,
     last_name CHARACTER VARYING(64),
     username CHARACTER VARYING(64) UNIQUE NOT NULL,
@@ -22,7 +25,6 @@ CREATE TABLE IF NOT EXISTS projects(
     );
 
 CREATE TABLE IF NOT EXISTS project_user(
-    id BIGSERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES users(id),
     project_id INTEGER NOT NULL REFERENCES projects(id),
     UNIQUE (user_id, project_id)
@@ -38,8 +40,7 @@ CREATE TABLE IF NOT EXISTS tasks(
     updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
     );
 
-CREATE TABLE IF NOT EXISTS executor_task(
-    id BIGSERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS user_task(
     user_id INTEGER NOT NULL REFERENCES users(id),
     task_id INTEGER NOT NULL REFERENCES tasks(id),
     UNIQUE (user_id, task_id)
