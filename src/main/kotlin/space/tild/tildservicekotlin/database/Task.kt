@@ -8,8 +8,7 @@ import java.time.Instant
 @Entity
 @Table(name = "tasks")
 data class Task(
-    @Id @GeneratedValue(strategy = GenerationType.AUTO, generator = "tasks_id_seq")
-    @SequenceGenerator(name = "tasks_id_seq", sequenceName = "tasks_id_seq", allocationSize = 1)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     var id : Long? = null,
     var taskName : String = "Blank",
     var taskDescription : String? = null,

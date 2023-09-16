@@ -15,8 +15,7 @@ import java.time.Instant
 @Entity
 @Table(name = "direct_messages")
 data class DirectMessage(
-    @Id @GeneratedValue(strategy = GenerationType.AUTO, generator = "direct_messages_id_seq")
-    @SequenceGenerator(name = "direct_messages_id_seq", sequenceName = "direct_messages_id_seq", allocationSize = 1)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     var id : Long? = null,
     var messageText : String = "Empty",
     @ManyToOne
@@ -31,8 +30,7 @@ data class DirectMessage(
 @Entity
 @Table(name = "project_messages")
 data class ProjectMessage(
-    @Id @GeneratedValue(strategy = GenerationType.AUTO, generator = "project_messages_id_seq")
-    @SequenceGenerator(name = "project_messages_id_seq", sequenceName = "project_messages_id_seq", allocationSize = 1)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     var id : Long? = null,
     var projectText : String = "Empty",
     @ManyToOne

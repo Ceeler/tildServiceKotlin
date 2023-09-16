@@ -9,8 +9,7 @@ import java.util.Date
 @Table(name = "projects")
 @Entity
 data class Project(
-    @Id @GeneratedValue(strategy = GenerationType.AUTO, generator = "projects_id_seq")
-    @SequenceGenerator(name = "projects_id_seq", sequenceName = "projects_id_seq", allocationSize = 1)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     var id : Long? = null,
     var projectName : String = "Blank",
     var projectDescription : String? = null,

@@ -12,8 +12,7 @@ import java.time.Instant
 @Table(name = "users")
 @Entity
 data class User(
-    @Id @GeneratedValue(strategy = GenerationType.AUTO, generator = "users_id_seq")
-    @SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     var id : Long? = null,
     var firstName : String = "Blank",
     var lastName : String? = null,
