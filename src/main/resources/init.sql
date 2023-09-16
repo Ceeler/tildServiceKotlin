@@ -1,8 +1,9 @@
 DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
 
+CREATE SEQUENCE users_seq START 1 INCREMENT 50;
 CREATE TABLE IF NOT EXISTS users(
-    id BIGSERIAL PRIMARY KEY ,
+    id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('users_seq'),
     first_name CHARACTER VARYING(64) NOT NULL,
     last_name CHARACTER VARYING(64),
     username CHARACTER VARYING(64) UNIQUE NOT NULL,
@@ -15,8 +16,9 @@ CREATE TABLE IF NOT EXISTS users(
     updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
     );
 
+CREATE SEQUENCE projects_seq START 1 INCREMENT 50;
 CREATE TABLE IF NOT EXISTS projects(
-    id BIGSERIAL PRIMARY KEY,
+    id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('projects_seq'),
     project_name CHARACTER VARYING(64) NOT NULL,
     project_description CHARACTER VARYING(128),
     ended_at DATE,
@@ -30,8 +32,9 @@ CREATE TABLE IF NOT EXISTS project_user(
     UNIQUE (user_id, project_id)
     );
 
+CREATE SEQUENCE tasks_seq START 1 INCREMENT 50;
 CREATE TABLE IF NOT EXISTS tasks(
-    id BIGSERIAL PRIMARY KEY,
+    id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('tasks_seq'),
     task_name CHARACTER VARYING(64) NOT NULL,
     task_description CHARACTER VARYING(128),
     author_id INTEGER NOT NULL REFERENCES users(id),
@@ -46,8 +49,9 @@ CREATE TABLE IF NOT EXISTS user_task(
     UNIQUE (user_id, task_id)
     );
 
+CREATE SEQUENCE project_messages_seq START 1 INCREMENT 50;
 CREATE TABLE IF NOT EXISTS project_messages(
-    id BIGSERIAL PRIMARY KEY,
+    id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('project_messages_seq'),
     project_text CHARACTER VARYING(128) NOT NULL,
     author_id INTEGER NOT NULL REFERENCES users(id),
     project_id INTEGER NOT NULL REFERENCES projects(id),
@@ -55,8 +59,9 @@ CREATE TABLE IF NOT EXISTS project_messages(
     updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
     );
 
+CREATE SEQUENCE comments_seq START 1 INCREMENT 50;
 CREATE TABLE IF NOT EXISTS comments(
-    id BIGSERIAL PRIMARY KEY,
+    id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('comments_seq'),
     comment_text CHARACTER VARYING(128) NOT NULL,
     author_id INTEGER NOT NULL REFERENCES users(id),
     project_message_id INTEGER NOT NULL REFERENCES project_messages(id),
@@ -64,16 +69,18 @@ CREATE TABLE IF NOT EXISTS comments(
     updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
     );
 
+CREATE SEQUENCE direct_messages_seq START 1 INCREMENT 50;
 CREATE TABLE IF NOT EXISTS direct_messages(
-    id BIGSERIAL PRIMARY KEY,
+    id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('direct_messages_seq'),
     message_text CHARACTER VARYING(128) NOT NULL,
     author_id INTEGER NOT NULL REFERENCES users(id),
     receiver_id INTEGER NOT NULL REFERENCES users(id),
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
     );
 
+CREATE SEQUENCE jwt_tokens_seq START 1 INCREMENT 50;
 CREATE TABLE IF NOT EXISTS jwt_tokens(
-    id BIGSERIAL PRIMARY KEY,
+    id BIGINT NOT NULL PRIMARY KEY DEFAULT NEXTVAL('jwt_tokens_seq'),
     refresh_token UUID NOT NULL,
     user_id INTEGER NOT NULL REFERENCES users(id),
     useragent CHARACTER VARYING(200),
